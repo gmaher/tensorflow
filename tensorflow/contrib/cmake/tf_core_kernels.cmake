@@ -111,7 +111,6 @@ if(tensorflow_BUILD_CONTRIB_KERNELS)
       "${tensorflow_source_dir}/tensorflow/contrib/tpu/ops/outfeed_ops.cc"
       "${tensorflow_source_dir}/tensorflow/contrib/tpu/ops/replication_ops.cc"
       "${tensorflow_source_dir}/tensorflow/contrib/tpu/ops/tpu_configuration_ops.cc"
-      "${tensorflow_source_dir}/tensorflow/contrib/tpu/ops/tpu_sendrecv_ops.cc"
     )
   list(APPEND tf_core_kernels_srcs ${tf_contrib_kernels_srcs})
 endif(tensorflow_BUILD_CONTRIB_KERNELS)
@@ -126,6 +125,8 @@ list(REMOVE_ITEM tf_core_kernels_srcs ${tf_core_kernels_cloud_srcs})
 endif()
 
 file(GLOB_RECURSE tf_core_kernels_exclude_srcs
+"${tensorflow_source_dir}/tensorflow/core/kernels/debug_ops*"
+  #my additions
    "${tensorflow_source_dir}/tensorflow/core/kernels/*test*.h"
    "${tensorflow_source_dir}/tensorflow/core/kernels/*test*.cc"
    "${tensorflow_source_dir}/tensorflow/core/kernels/*testutil.h"

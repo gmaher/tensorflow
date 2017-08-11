@@ -21,18 +21,18 @@ limitations under the License.
 #include "tensorflow/core/public/session.h"
 
 // Standard invoking function macro to dispatch to a fuzzer class.
-#ifndef PLATFORM_WINDOWS
-#define STANDARD_TF_FUZZ_FUNCTION(FuzzerClass)                              \
-  extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) { \
-    static FuzzerClass* fuzzer = new FuzzerClass();                         \
-    return fuzzer->Fuzz(data, size);                                        \
-  }
-#else
+// #ifndef PLATFORM_WINDOWS
+// #define STANDARD_TF_FUZZ_FUNCTION(FuzzerClass)                              \
+//   extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) { \
+//     static FuzzerClass* fuzzer = new FuzzerClass();                         \
+//     return fuzzer->Fuzz(data, size);                                        \
+//   }
+// #else
 // We don't compile this for Windows, MSVC doesn't like it as pywrap in Windows
 // links all the code into one big object file and there are conflicting
 // function names.
 #define STANDARD_TF_FUZZ_FUNCTION(FuzzerClass)
-#endif
+// #endif
 
 // Standard builder for hooking one placeholder to one op.
 #define SINGLE_INPUT_OP_BUILDER(dtype, opName)                           \

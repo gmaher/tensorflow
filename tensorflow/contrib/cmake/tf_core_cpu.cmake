@@ -34,6 +34,9 @@ file(GLOB_RECURSE tf_core_cpu_srcs
 )
 
 file(GLOB_RECURSE tf_core_cpu_exclude_srcs
+    "${tensorflow_source_dir}/tensorflow/core/debug/debug_io_utils*"
+    "${tensorflow_source_dir}/tensorflow/core/debug/debugger_state_impl*"  
+  #my additions
     "${tensorflow_source_dir}/tensorflow/cc/saved_model/*test*.h"
     "${tensorflow_source_dir}/tensorflow/cc/saved_model/*test*.cc"
     "${tensorflow_source_dir}/tensorflow/core/*test*.h"
